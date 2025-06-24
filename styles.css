@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #2c3e50;
+}
+
+.wheel-container {
+    position: relative;
+    width: clamp(280px, 80vmin, 500px); /* Responsive wheel size */
+    aspect-ratio: 1 / 1; /* Makes it a perfect circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pointer {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 30px solid #e74c3c; /* Red pointer */
+    z-index: 10;
+    filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3));
+}
+
+#wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 8px solid #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    background: conic-gradient(red 0deg 180deg, blue 180deg 360deg); /* Placeholder */
+    transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth ease-out spin */
+}
+
+.segment-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 0;
+    font-weight: 600;
+    font-size: clamp(0.7rem, 3vmin, 1.2rem);
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    /* Transform is set by JavaScript */
+}
+
+#spin-btn {
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px #2980b9;
+}
+
+#spin-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px #2980b9;
+}
+
+#spin-btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    box-shadow: 0 4px #7f8c8d;
+}
+
+#result-message {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    min-height: 2.5rem; /* Prevents layout shift */
+    margin-top: 10px;
+}
